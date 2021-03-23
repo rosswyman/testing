@@ -1,7 +1,7 @@
 <script>
     let resortList = [];
 
-    let resortList=[
+    resortList=[
         {
             name: 'Alyeska Resort',
             region: 'Alaska',
@@ -24,4 +24,8 @@
             elevationDrop: 1181-609,
         }
     ]    
+
+    for (let i=0; i<resortList.length; i++) {
+        document.write(resortList[i].name + " is located in " + resortList[i].region + " and has a vertical drop of "+ resortList[i].elevationDrop + " feet" + "<br>");
+    }
 </script>
