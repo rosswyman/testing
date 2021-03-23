@@ -1,4 +1,3 @@
-<script>
     let resortList = [];
 
     resortList=[
@@ -26,6 +25,5 @@
     ]    
 
     for (let i=0; i<resortList.length; i++) {
-        document.write(resortList[i].name + " is located in " + resortList[i].region + " and has a vertical drop of "+ resortList[i].elevationDrop + " feet" + "<br>");
+        document.write(resortList[i].name + " is located in " + resortList[i].region + " and has a vertical drop of "+ Math.round(resortList[i].elevationDrop*3.3) + " feet" + "<br>");
     }
-</script>
