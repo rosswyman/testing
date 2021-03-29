@@ -1,3 +1,4 @@
+(function(){
     let resortList = [];
 
     resortList=[
@@ -33,3 +34,4 @@
         }
         document.write(resortList[i].name + ' is located in ' + resortList[i].region + ' and has a vertical drop of ' + Math.round(resortList[i].elevationDrop*3.3) + ' feet.' + extraText + '<br>');
     }
+})();   
