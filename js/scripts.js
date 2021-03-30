@@ -30,8 +30,26 @@ let resortRepository=(function(){
     return{
         // adds a new resort to the end of resortRepository
         add: function(resort){
-            resortList.push(resort);
-        },
+            if (typeof(resort) === 'object'){
+                // These are the keys expected to be passed to the add function
+                let expectedKeys=[
+                'name',
+                'region',
+                'elevationTop',
+                'elevationBottom',
+                'elevationDrop'
+                ];
+                // Creates an array of the keys of the object passed to the add function
+                let testKeys=Object.keys(resort);
+                // Checks to see if keys match
+                if(JSON.stringify(expectedKeys)==JSON.stringify(testKeys)){
+                  resortList.push(resort);
+                } else{
+                alert('That is not allowed.  You have attempted to add incorrect resort information');
+              }      
+            } else{
+              alert('That is not allowed.  You have attempted to add incorrect resort information');
+        }},
         // returns the list of resorts
         getAll: function(){
             return resortList;
