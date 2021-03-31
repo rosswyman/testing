@@ -1,6 +1,8 @@
 // IIFE creates a new array resortRepository while leaving original resortList unchanged
 let resortRepository=(function(){
-    let resortList = []; // initial array declartion
+    
+    // initial array declartion
+    let resortList = []; 
 
     // iniital population of resort information
     resortList=[
