@@ -70,7 +70,7 @@ function createResortButton(mountain){
     let listItem=document.createElement('li');
     let button=document.createElement('button')
     button.innerText=mountain.name;
-    button.classList.add('ski-resort');
+    button.classList.add('button-class');
     listItem.appendChild(button);
     listing.appendChild(listItem);
     }
