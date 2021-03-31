@@ -137,6 +137,9 @@ h3 {
   line-height: 2;
 }
 
+.ski-resort{
+  border: 1px green solid;
+}
 /* Grid Styling */
 
 .project-grid {
