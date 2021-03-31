@@ -25,35 +25,40 @@ let resortRepository=(function(){
             elevationBottom: 609,
             elevationDrop: 1181-609,
         }
-    ]    
+    ]
+    
+    // adds a new resort to the end of resortRepository
+    function add(resort){
+        // Checks to see if the parameter being passed to the add function is an object
+        if (typeof(resort) === 'object'){
+            // These are the keys expected to be passed to the add function
+            let expectedKeys=[
+            'name',
+            'region',
+            'elevationTop',
+            'elevationBottom',
+            'elevationDrop'
+            ];
+            // Creates an array of the keys of the object passed to the add function
+            let testKeys=Object.keys(resort);
+            // Checks to see if keys match
+            if(JSON.stringify(expectedKeys)==JSON.stringify(testKeys)){
+              resortList.push(resort);
+            } else{
+            alert('That is not allowed.  You have attempted to add incorrect resort information');
+          }      
+        } else{
+          alert('That is not allowed.  You have attempted to add incorrect resort information');
+    }}
+
+    // returns the list of resorts
+    function getAll(){
+        return resortList;
+    }
 
     return{
-        // adds a new resort to the end of resortRepository
-        add: function(resort){
-            if (typeof(resort) === 'object'){
-                // These are the keys expected to be passed to the add function
-                let expectedKeys=[
-                'name',
-                'region',
-                'elevationTop',
-                'elevationBottom',
-                'elevationDrop'
-                ];
-                // Creates an array of the keys of the object passed to the add function
-                let testKeys=Object.keys(resort);
-                // Checks to see if keys match
-                if(JSON.stringify(expectedKeys)==JSON.stringify(testKeys)){
-                  resortList.push(resort);
-                } else{
-                alert('That is not allowed.  You have attempted to add incorrect resort information');
-              }      
-            } else{
-              alert('That is not allowed.  You have attempted to add incorrect resort information');
-        }},
-        // returns the list of resorts
-        getAll: function(){
-            return resortList;
-        }
+        add: add,
+        getAll: getAll        
     };
 })();;
 
