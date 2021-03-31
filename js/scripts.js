@@ -58,25 +58,21 @@ let resortRepository=(function(){
         return resortList;
     }
 
-    // The purpose of this function is...
-    function addListItem(resort){
-        let listing=document.querySelector('.resort-list');
-        let listItem=document.createElement('li');
-        let button=document.createElement('button')
-        button.innerText=resort.name;
-        button.classList.add('ski-resort');
-        listItem.appendChild(button);
-        listing.appendChild(listItem);
-    };
-
     return{
         add: add,
-        getAll: getAll,
-        addListItem: addListItem,        
+        getAll: getAll        
     };
 })();;
 
+//Per task 1.5, the following function and forEach loop prints the details
+function createResortButton(mountain){
+    let listing=document.querySelector('.resort-list');
+    let listItem=document.createElement('li');
+    let button=document.createElement('button')
+    button.innerText=mountain.name;
+    button.classList.add('ski-resort');
+    listItem.appendChild(button);
+    listing.appendChild(listItem);
+    }
 
-resortRepository.getAll().forEach(function(resort){
-    resortRepository.addListItem(resort);
-})  
+    resortRepository.getAll().forEach(createResortButton);
