@@ -65,7 +65,7 @@ let resortRepository=(function(){
 })();;
 
 //Per task 1.5, the following function and forEach loop prints the details
-function printResortInfo(mountain){
+function createResortButton(mountain){
     let listing=document.querySelector('.resort-list');
     let listItem=document.createElement('li');
     let button=document.createElement('button')
@@ -75,4 +75,4 @@ function printResortInfo(mountain){
     listing.appendChild(listItem);
     }
 
-    resortRepository.getAll().forEach(printResortInfo);
+    resortRepository.getAll().forEach(createResortButton);
