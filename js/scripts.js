@@ -66,13 +66,13 @@ let resortRepository=(function(){
 
 //Per task 1.5, the following function and forEach loop prints the details
 function printResortInfo(mountain){
-    let extraText =[];
-
-        // The following conditional adds an exclamation if the vertical drop is greater than 2000 feet
-        if (Math.round(mountain.elevationDrop*3.3) > 2000){
-            extraText=' That\'s a big drop!'
-        }
-    document.write(mountain.name + ' is located in ' + mountain.region + ' and has a vertical drop of ' + Math.round(mountain.elevationDrop*3.3) + ' feet.' + extraText + '<br>');
+    let listing=document.querySelector('.resort-list');
+    let listItem=document.createElement('li');
+    let button=document.createElement('button')
+    button.innerText=mountain.name;
+    button.classList.add('ski-resort');
+    listItem.appendChild(button);
+    listing.appendChild(listItem);
     }
 
     resortRepository.getAll().forEach(printResortInfo);
