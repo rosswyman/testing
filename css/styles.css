@@ -4,8 +4,7 @@
 }
 
 /* Native CSS Variables */
-
-/* :root {} */
+  /* :root {} */
 
 /* Header Styling */
 
@@ -27,56 +26,15 @@ header {
 
 /* Body Styling */
 
-body {
-  background-color: var(--background-color);
-  font-family: var(--font-body), sans-serif;
-  font-weight: var(--font-weight-text);
-  font-size: 16px;
-  line-height: 1.6;
+.resort-list{
+  list-style-type: circle;
 }
 
-.ski-resort{
-  border: 1px green solid;
-}
 /* Grid Styling */
 
 /* Link Styling */
 
 /* Button Styling */
-
-button,
-.button {
-  /* overwrites browser defaults and resets the border */
-  border: none;
-  display: inline-block;
-
-  /* takes the font from the outer container */
-  font-family: inherit;
-
-  /* styles the background color, font color, and text decoration (underline, etc.) of the button */
-  background-color: var(--button-color-primary);
-  color: var(--button-text-color-primary);
-  text-decoration: none;
-
-  /* adds spacing to the button (this will be discussed more in-depth later) */
-  padding: 10px;
-  border-radius: 3px;
-
-  /* gives the button a bottom border with a width of 2px, a type of solid, and a color in RGBA format */
-  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
-  transition: opacity 0.9s linear;
-}
-
-button:hover,
-button:focus,
-.button:hover,
-.button:focus {
-  /* lets the mouse appear as a crosshair when hovering over the button */
-  cursor: crosshair;
-
-  /* reduces the opacity of the button to 50% */
-  opacity: 0.5;
-}
 
 /* div Class Styling */
 
@@ -84,8 +42,6 @@ button:focus,
 
 /* Footer Styling */
 
-
 /* Table Styling */
-
 
 /* Responsive Design */
