@@ -58,21 +58,23 @@ let resortRepository=(function(){
         return resortList;
     }
 
-    return{
-        add: add,
-        getAll: getAll        
-    };
-})();;
-
-//Per task 1.5, the following function and forEach loop prints the details
-function createResortButton(mountain){
-    let listing=document.querySelector('.resort-list');
-    let listItem=document.createElement('li');
-    let button=document.createElement('button')
-    button.innerText=mountain.name;
-    button.classList.add('button-class');
-    listItem.appendChild(button);
-    listing.appendChild(listItem);
+    function addListItem(resort){
+        let mountainList=document.querySelector('.mountain-list');
+        let listMountain=document.createElement('li');
+        let button=document.createElement('button')
+        button.innerText=resort.name;
+        button.classList.add('button-class');
+        listMountain.appendChild(button);
+        mountainList.appendChild(listMountain);
     }
 
-    resortRepository.getAll().forEach(createResortButton);
+    return{
+        add: add,
+        getAll: getAll,
+        addListItem: addListItem
+    };
+})();
+
+resortRepository.getAll().forEach(function(resort){
+    resortRepository.addListItem(resort)
+});
