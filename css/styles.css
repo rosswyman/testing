@@ -10,7 +10,7 @@
 
 header {
   background-color: var(--background-color);
-  font-family: var(--font-header-footer), sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: var(--font-weight-text);
   font-size: 16px;
   line-height: 1.6;
@@ -25,13 +25,31 @@ header {
 }
 
 /* Body Styling */
+body{
+  background-color: #c2cfcf;
+}
+  
 
+
+h1{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.4;
+  text-align: center;
+}
 /* Grid Styling */
 
 /* Link Styling */
 
 /* Button Styling */
-
+button,
+.button{
+  background-color: #7a9192;
+  border: 3px solid black;
+  padding: 10px;
+  border-radius: 10px;
+}
 /* div Class Styling */
 
 /* img Class Styling */
@@ -41,3 +59,27 @@ header {
 /* Table Styling */
 
 /* Responsive Design */
+@media all and (max-width: 750px) {
+   h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+}
+
+@media all and (min-width: 500px) and (max-width: 750px) {
+  h1{
+    font-size: 20px;
+  }
+}
+@media all and (max-width: 500px) {
+    h1 {
+    font-size: 16px;
+  }
+
+  h2 {
+    font-size: 12px;
+  }
+}
