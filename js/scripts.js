@@ -68,12 +68,18 @@ let resortRepository=(function(){
         mountainList.appendChild(listMountain);
     }
 
+    function showDetails(resort){
+        console.log(resort);
+    }
+
     return{
         add: add,
         getAll: getAll,
-        addListItem: addListItem
+        addListItem: addListItem,
+        showDetails: showDetails
     };
 })();
+
 
 resortRepository.getAll().forEach(function(resort){
     resortRepository.addListItem(resort)
