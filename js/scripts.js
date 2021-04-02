@@ -66,10 +66,18 @@ let resortRepository=(function(){
         button.classList.add('button-class');
         listMountain.appendChild(button);
         mountainList.appendChild(listMountain);
+        
+        /*button.addEventListener('click',function(event){
+            alert(resort.name)
+            console.log(resort.name);    
+          })*/
+
+        button.addEventListener('click',showDetails);
     }
 
     function showDetails(resort){
         console.log(resort);
+        alert(resort.name);
     }
 
     return{
