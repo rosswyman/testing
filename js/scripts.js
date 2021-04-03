@@ -67,17 +67,14 @@ let resortRepository=(function(){
         listMountain.appendChild(button);
         mountainList.appendChild(listMountain);
         
-        /*button.addEventListener('click',function(event){
-            alert(resort.name)
-            console.log(resort.name);    
-          })*/
-
-        button.addEventListener('click',showDetails);
+ 
+        showDetails(button, resort);
     }
 
-    function showDetails(resort){
-        console.log(resort);
-        alert(resort.name);
+    function showDetails(button ,resort){
+        button.addEventListener('click',function(){
+            console.log(resort.name);
+        })
     }
 
     return{
