@@ -38,6 +38,10 @@ h1{
   line-height: 1.4;
   text-align: center;
 }
+
+.mountain-list{
+  list-style: inside;
+}
 /* Grid Styling */
 
 /* Link Styling */
