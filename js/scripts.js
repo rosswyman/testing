@@ -71,7 +71,10 @@ let quakeRepository=(function(){
               let quake ={
               name: item.properties.title,
               url: item.properties.detail,
-              
+              magnitude: null,
+              latitude: null,
+              longitude: null,
+              depth: null              
             };
             add(quake);
           });
@@ -87,14 +90,15 @@ let quakeRepository=(function(){
             return response.json();
           }).then(function (item) {
               let quakeCoordinates=item.geometry.coordinates;
-              //console.log(quakeCoordinates)
+              // console.log(quakeCoordinates)
               coordArray=Object.values(quakeCoordinates);
               // console.log(coordArray)
               // console.log(typeof(quakeCoordinates))
-              magnitude: item.properties.mag;
-              latitude: coordArray[0];
-              longitude: coordArray[1];
-              depth: coordArray[2];
+              quake.magnitude=item.properties.mag;
+              quake.latitude=coordArray[0];
+              quake.longitude=coordArray[1];
+              quake.depth=coordArray[2];
+
           }).catch(function(e){
             console.error(e);
           });
