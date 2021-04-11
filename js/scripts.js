@@ -49,8 +49,7 @@ let quakeRepository=(function(){
         button.classList.add('button-class');
         listQuake.appendChild(button);
         quakeList.appendChild(listQuake);
-        
- 
+         
         showDetails(button, quake);
     }
 
@@ -81,28 +80,28 @@ let quakeRepository=(function(){
         }).catch(function(e){
           console.error(e);
         });
-        }
+    }
     
-        function loadDetails(quake){
-          console.log('loadDetails called')
-          let url=quake.url;
-          return fetch(url).then(function(response){
-            return response.json();
-          }).then(function (item) {
-              let quakeCoordinates=item.geometry.coordinates;
-              // console.log(quakeCoordinates)
-              coordArray=Object.values(quakeCoordinates);
-              // console.log(coordArray)
-              // console.log(typeof(quakeCoordinates))
-              quake.magnitude=item.properties.mag;
-              quake.latitude=coordArray[0];
-              quake.longitude=coordArray[1];
-              quake.depth=coordArray[2];
+    function loadDetails(quake){
+        console.log('loadDetails called')
+        let url=quake.url;
+        return fetch(url).then(function(response){
+        return response.json();
+        }).then(function (item) {
+            let quakeCoordinates=item.geometry.coordinates;
+            // console.log(quakeCoordinates)
+            coordArray=Object.values(quakeCoordinates);
+            // console.log(coordArray)
+            // console.log(typeof(quakeCoordinates))
+            quake.magnitude=item.properties.mag;
+            quake.latitude=coordArray[0];
+            quake.longitude=coordArray[1];
+            quake.depth=coordArray[2];
 
-          }).catch(function(e){
-            console.error(e);
-          });
-        }
+        }).catch(function(e){
+        console.error(e);
+        });
+    }
 
     return{
         add: add,
