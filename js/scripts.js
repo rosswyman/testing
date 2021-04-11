@@ -44,6 +44,7 @@ let quakeRepository=(function(){
     }
 
     function loadList() {
+        showLoadingMessage();
         return fetch(apiUrl).then(function (response) {
           return response.json();
         }).then(function (json){
@@ -58,13 +59,16 @@ let quakeRepository=(function(){
               depth: null              
             };
             add(quake);
+            hideLoadingMessage();
           });
         }).catch(function(e){
-          console.error(e);
+            hideLoadingMessage();
+            console.error(e);
         });
     }
     
     function loadDetails(quake){
+        showLoadingMessage();
         let url=quake.url;
         return fetch(url).then(function(response){
         return response.json();
@@ -77,10 +81,19 @@ let quakeRepository=(function(){
             quake.latitude=coordArray[0];
             quake.longitude=coordArray[1];
             quake.depth=coordArray[2];
-
+            hideLoadingMessage();
         }).catch(function(e){
-        console.error(e);
+            hideLoadingMessage();
+            console.error(e);
         });
+    }
+
+    function showLoadingMessage(){
+        console.log('Sit tight while we get that information pulled together for ya');
+    }
+
+    function hideLoadingMessage(){
+        console.clear();
     }
 
     return{
@@ -89,10 +102,11 @@ let quakeRepository=(function(){
         addListItem: addListItem,
         showDetails: showDetails,
         loadList: loadList,
-        loadDetails: loadDetails
+        loadDetails: loadDetails,
+        showLoadingMessage: showLoadingMessage,
+        hideLoadingMessage: hideLoadingMessage
     };
 })();
-
 
 quakeRepository.loadList().then(function() {
     // Now the data is loaded!
