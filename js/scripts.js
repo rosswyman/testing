@@ -7,34 +7,16 @@ let quakeRepository=(function(){
         //Currently fetches data for 4/01/2021-4/02/2021 UTC time within 1000 km radius of Houston, TX.  Plan to replace this user input for date, center, and radius
         let apiUrl = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&starttime=2021-04-01&endtime=2021-04-02&latitude=29.76&longitude=-95.37&maxradiuskm=1000';
 
-    // ! -- THIS FUNCTION HAS BEEN REPLACED WITH A SIMPLIFIED VERSION BELOW WHILE WORKING THROUGH OTHER PARTS OF THE CODE -- !
-    // // adds a new quake to the end of quakeRepository
-    // function add(quake){
-    //     // Checks to see if the parameter being passed to the add function is an object
-    //     if (typeof(quake) === 'object'){
-    //         // These are the keys expected to be passed to the add function
-    //         let expectedKeys=[
-    //         'name',
-    //         'region',
-    //         'elevationTop',
-    //         'elevationBottom',
-    //         'elevationDrop'
-    //         ];
-    //         // Creates an array of the keys of the object passed to the add function
-    //         let testKeys=Object.keys(quake);
-    //         // Checks to see if keys match
-    //         if(JSON.stringify(expectedKeys)==JSON.stringify(testKeys)){
-    //           quakeList.push(quake);
-    //         } else{
-    //         alert('That is not allowed.  You have attempted to add incorrect quake information');
-    //       }      
-    //     } else{
-    //       alert('That is not allowed.  You have attempted to add incorrect quake information');
-    // }}
 
+    // // adds a new quake to the end of quakeRepository
     function add(quake){
-        quakeList.push(quake);
-      }
+        // Checks to see if the parameter being passed to the add function is an object
+        if (typeof(quake) === 'object'){     
+              quakeList.push(quake);
+            } else{
+            alert('That is not allowed.  You have attempted to add incorrect quake information');
+            }
+        }
 
     // returns the list of resorts
     function getAll(){
