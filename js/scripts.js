@@ -1,38 +1,15 @@
-// IIFE creates a new array resortRepository while leaving original resortList unchanged
-let resortRepository=(function(){
+// IIFE creates a new array quakeRepository while leaving original quakeList unchanged
+let quakeRepository=(function(){
     
     // initial array declartion
-    let resortList = []; 
+    let quakeList = []; 
 
-    // iniital population of resort information
-    resortList=[
-        {
-            name: 'Alyeska Resort',
-            region: 'Alaska',
-            elevationTop: 1201,
-            elevationBottom: 107,
-            elevationDrop: 1201-107,
-        },
-        {
-            name: 'Breckenridge',
-            region: 'Colorado',
-            elevationTop: 3962,
-            elevationBottom: 2926,
-            elevationDrop: 3962-2926,
-        },
-        {
-            name: 'Stratton Mountain Resort',
-            region: 'Vermont',
-            elevationTop: 1181,
-            elevationBottom: 609,
-            elevationDrop: 1181-609,
-        }
-    ]
+
     
-    // adds a new resort to the end of resortRepository
-    function add(resort){
+    // adds a new quake to the end of quakeRepository
+    function add(quake){
         // Checks to see if the parameter being passed to the add function is an object
-        if (typeof(resort) === 'object'){
+        if (typeof(quake) === 'object'){
             // These are the keys expected to be passed to the add function
             let expectedKeys=[
             'name',
@@ -42,38 +19,38 @@ let resortRepository=(function(){
             'elevationDrop'
             ];
             // Creates an array of the keys of the object passed to the add function
-            let testKeys=Object.keys(resort);
+            let testKeys=Object.keys(quake);
             // Checks to see if keys match
             if(JSON.stringify(expectedKeys)==JSON.stringify(testKeys)){
-              resortList.push(resort);
+              quakeList.push(quake);
             } else{
-            alert('That is not allowed.  You have attempted to add incorrect resort information');
+            alert('That is not allowed.  You have attempted to add incorrect quake information');
           }      
         } else{
-          alert('That is not allowed.  You have attempted to add incorrect resort information');
+          alert('That is not allowed.  You have attempted to add incorrect quake information');
     }}
 
     // returns the list of resorts
     function getAll(){
-        return resortList;
+        return quakeList;
     }
 
-    function addListItem(resort){
-        let mountainList=document.querySelector('.mountain-list');
-        let listMountain=document.createElement('li');
+    function addListItem(quake){
+        let quakeList=document.querySelector('.mountain-list');
+        let listQuake=document.createElement('li');
         let button=document.createElement('button')
-        button.innerText=resort.name;
+        button.innerText=quake.name;
         button.classList.add('button-class');
-        listMountain.appendChild(button);
-        mountainList.appendChild(listMountain);
+        listQuake.appendChild(button);
+        quakeList.appendChild(listQuake);
         
  
-        showDetails(button, resort);
+        showDetails(button, quake);
     }
 
-    function showDetails(button ,resort){
+    function showDetails(button ,quake){
         button.addEventListener('click',function(){
-            console.log(resort.name);
+            console.log(quake.name);
         })
     }
 
@@ -86,6 +63,6 @@ let resortRepository=(function(){
 })();
 
 
-resortRepository.getAll().forEach(function(resort){
-    resortRepository.addListItem(resort)
+quakeRepository.getAll().forEach(function(quake){
+    quakeRepository.addListItem(quake)
 });
