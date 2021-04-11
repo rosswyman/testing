@@ -51,6 +51,7 @@ let quakeRepository=(function(){
               let quake ={
               name: item.properties.title,
               url: item.properties.detail,
+              // defines fields that will be populated from the quake url
               magnitude: null,
               latitude: null,
               longitude: null,
@@ -68,9 +69,11 @@ let quakeRepository=(function(){
         return fetch(url).then(function(response){
         return response.json();
         }).then(function (item) {
+            quake.magnitude=item.properties.mag;
+            // Creates an array with the lat, lon, and depth of the quake so those values can be passed on to the object
+            // There is probably a more efficient way to do that, but I don't have it figured out yet
             let quakeCoordinates=item.geometry.coordinates;
             coordArray=Object.values(quakeCoordinates);
-            quake.magnitude=item.properties.mag;
             quake.latitude=coordArray[0];
             quake.longitude=coordArray[1];
             quake.depth=coordArray[2];
