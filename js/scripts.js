@@ -52,17 +52,59 @@ let quakeRepository=(function(){
         showDetails(button, quake);
     }
 
-    function showDetails(button ,quake){
+    function showDetails(button, quake){
+        console.log('Function showDetails called');
         button.addEventListener('click',function(){
-            console.log(quake.name);
-        })
+            loadDetails(quake).then(function(){
+                console.log(quake.name);
+            });            
+        });
     }
+
+    function loadList() {
+        return fetch(apiUrl).then(function (response) {
+          return response.json();
+        }).then(function (json){
+            json.features.forEach(function(item){
+              let quake ={
+              name: item.properties.title,
+              url: item.properties.detail,
+              
+            };
+            add(quake);
+          });
+        }).catch(function(e){
+          console.error(e);
+        });
+        }
+    
+        function loadDetails(quake){
+          console.log('loadDetails called')
+          let url=quake.url;
+          return fetch(url).then(function(response){
+            return response.json();
+          }).then(function (item) {
+              let quakeCoordinates=item.geometry.coordinates;
+              //console.log(quakeCoordinates)
+              coordArray=Object.values(quakeCoordinates);
+              // console.log(coordArray)
+              // console.log(typeof(quakeCoordinates))
+              magnitude: item.properties.mag;
+              latitude: coordArray[0];
+              longitude: coordArray[1];
+              depth: coordArray[2];
+          }).catch(function(e){
+            console.error(e);
+          });
+        }
 
     return{
         add: add,
         getAll: getAll,
         addListItem: addListItem,
-        showDetails: showDetails
+        showDetails: showDetails,
+        loadList: loadList,
+        loadDetails: loadDetails
     };
 })();
 
