@@ -36,7 +36,6 @@ let quakeRepository=(function(){
     }
 
     function showDetails(button, quake){
-        console.log('Function showDetails called');
         button.addEventListener('click',function(){
             loadDetails(quake).then(function(){
                 console.log(quake.name);
@@ -65,16 +64,12 @@ let quakeRepository=(function(){
     }
     
     function loadDetails(quake){
-        console.log('loadDetails called')
         let url=quake.url;
         return fetch(url).then(function(response){
         return response.json();
         }).then(function (item) {
             let quakeCoordinates=item.geometry.coordinates;
-            // console.log(quakeCoordinates)
             coordArray=Object.values(quakeCoordinates);
-            // console.log(coordArray)
-            // console.log(typeof(quakeCoordinates))
             quake.magnitude=item.properties.mag;
             quake.latitude=coordArray[0];
             quake.longitude=coordArray[1];
@@ -98,9 +93,7 @@ let quakeRepository=(function(){
 
 quakeRepository.loadList().then(function() {
     // Now the data is loaded!
-    console.log('it made it this far')
-     quakeRepository.getAll().forEach(function(quake){
-      quakeRepository.addListItem(quake);
-      console.log('running through getAll loop')
+    quakeRepository.getAll().forEach(function(quake){
+    quakeRepository.addListItem(quake);
     });
   });
