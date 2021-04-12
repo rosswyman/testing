@@ -4,8 +4,8 @@ let quakeRepository=(function(){
     // initial array declartion
     let quakeList = []; 
 
-        //Currently fetches data for 4/01/2021-4/02/2021 UTC time within 1000 km radius of Houston, TX.  Plan to replace this user input for date, center, and radius
-        let apiUrl = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&starttime=2021-04-01&endtime=2021-04-02&latitude=29.76&longitude=-95.37&maxradiuskm=1000';
+    //Currently fetches data for 4/01/2021-4/02/2021 UTC time within 1000 km radius of Houston, TX.  Plan to replace this user input for date, center, and radius
+    let apiUrl = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&starttime=2021-04-01&endtime=2021-04-02&latitude=29.76&longitude=-95.37&maxradiuskm=1000';
 
 
     // // adds a new quake to the end of quakeRepository
@@ -38,7 +38,7 @@ let quakeRepository=(function(){
     function showDetails(button, quake){
         button.addEventListener('click',function(){
             loadDetails(quake).then(function(){
-                console.log(quake.name);
+              console.log(quake.name);
             });            
         });
     }
@@ -75,12 +75,9 @@ let quakeRepository=(function(){
         }).then(function (item) {
             quake.magnitude=item.properties.mag;
             // Creates an array with the lat, lon, and depth of the quake so those values can be passed on to the object
-            // There is probably a more efficient way to do that, but I don't have it figured out yet
-            let quakeCoordinates=item.geometry.coordinates;
-            coordArray=Object.values(quakeCoordinates);
-            quake.latitude=coordArray[0];
-            quake.longitude=coordArray[1];
-            quake.depth=coordArray[2];
+            quake.latitude=item.geometry.coordinates[0];
+            quake.longitude=item.geometry.coordinates[1];
+            quake.depth=item.geometry.coordinates[2]
             hideLoadingMessage();
         }).catch(function(e){
             hideLoadingMessage();
