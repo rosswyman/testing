@@ -92,6 +92,120 @@ let quakeRepository=(function(){
         console.clear();
     }
 
+    let modalContainer = document.querySelector('#modal-container');
+
+    function showModal(title, text) {
+        // Clear all existing modal content
+        modalContainer.innerHTML = '';
+
+        let modal = document.createElement('div');
+        modal.classList.add('modal');
+    
+        let closeButtonElement = document.createElement('button');
+        closeButtonElement.classList.add('modal-close');
+        closeButtonElement.innerText = 'Close';
+        closeButtonElement.addEventListener('click', hideModal);
+
+        let titleElement = document.createElement('h1');
+        titleElement.innerText = title;
+
+        let contentElement = document.createElement('p');
+        contentElement.innerText = text;    
+        
+        modal.appendChild(closeButtonElement);
+        modal.appendChild(titleElement);
+        modal.appendChild(contentElement);
+
+        modalContainer.appendChild(modal);
+
+        modalContainer.classList.add('is-visible');
+  }
+
+  let dialogPromiseReject;
+
+  function hideModal(){   
+    let modalContainer=document.querySelector('#modal-container');
+    modalContainer.classList.remove('is-visible');
+
+    if (dialogPromiseReject){
+      dialogPromiseReject();
+      dialogPromiseReject=null;
+    }
+  }
+
+  function showDialog(title,text,quake){
+    showModal(title, text);
+      
+    let modalContainer=document.querySelector('#modal-container');
+    let modal = modalContainer.querySelector('.modal');
+
+    // Create a confirm button
+    let confirmButton = document.createElement('button');
+    confirmButton.classList.add('modal-confirm');
+    confirmButton.innerText = 'Confirm';
+
+    // Create a cancel button
+    let cancelButton = document.createElement('button');
+    cancelButton.classList.add('modal-cancel');
+    cancelButton.innerText = 'Cancel';
+
+    let quakeDetails=document.createElement('ul');
+    quakeDetails.classList.add('quake-list');
+
+    let detailURL=document.createElement('li');
+    detailURL.innerText='Event URL: '+quake.nonJsonUrl;
+    quakeDetails.appendChild(detailURL);
+
+    let detailMagnitude=document.createElement('li');
+    detailMagnitude.innerText='Magnitude: '+quake.magnitude;
+    quakeDetails.appendChild(detailMagnitude);
+
+    let detailLatitude=document.createElement('li');
+    detailLatitude.innerText='Latitude: '+quake.latitude;
+    quakeDetails.appendChild(detailLatitude);
+
+    let detailLongitude=document.createElement('li');
+    detailLongitude.innerText='Longitude: '+quake.longitude;
+    quakeDetails.appendChild(detailLongitude);
+
+    let detailDepth=document.createElement('li');
+    detailDepth.innerText='Depth (km): '+quake.depth;
+    quakeDetails.appendChild(detailDepth);
+ 
+
+    modal.appendChild(quakeDetails);
+    modal.appendChild(confirmButton);
+    modal.appendChild(cancelButton);
+
+    confirmButton.focus;
+
+    return new Promise((resolve,reject) => {
+      cancelButton.addEventListener('click', hideModal);
+      confirmButton.addEventListener('click', () => {
+        dialogPromiseReject=null;
+        hideModal();
+        resolve();
+      });
+      dialogPromiseReject=reject;
+    });
+  }
+
+  window.addEventListener('keydown', (e) =>{
+    let modalContainer = document.querySelector('#modal-container');
+    if(e.key==='Escape' && modalContainer.classList.contains('is-visible')){
+      hideModal();
+    }
+    });
+
+  modalContainer.addEventListener('click', (e) => {
+    // Since this is also triggered when clicking INSIDE the modal
+    // We only want to close if the user clicks directly on the overlay
+    let target = e.target;
+    if(target=== modalContainer){
+      hideModal();
+    }
+  })
+
     return{
         add: add,
         getAll: getAll,
