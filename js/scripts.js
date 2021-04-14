@@ -37,7 +37,7 @@ let quakeRepository=(function(){
     function showDetails(button, quake){
         button.addEventListener('click',function(){
             loadDetails(quake).then(function(){
-              console.log(quake.name);
+                showDialog(quake.name,'Quake Details',quake);
             });            
         });
     }
