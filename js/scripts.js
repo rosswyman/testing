@@ -22,6 +22,7 @@ let quakeRepository=(function(){
         return quakeList;
     }
 
+    // creates an unordered list of earthquakes that the user can click on for details
     function addListItem(quake){
         let quakeList=document.querySelector('.quake-list');
         let listQuake=document.createElement('li');
@@ -34,6 +35,7 @@ let quakeRepository=(function(){
         showDetails(button, quake);
     }
 
+    // Shows the details of an earthquake by calling the showDialog function when the button is pressed
     function showDetails(button, quake){
         button.addEventListener('click',function(){
             loadDetails(quake).then(function(){
@@ -52,6 +54,7 @@ let quakeRepository=(function(){
               name: item.properties.title,
               detailURL: item.properties.detail,
               // defines fields that will be populated from the quake url
+              nonJsonUrl: null,
               magnitude: null,
               latitude: null,
               longitude: null,
@@ -153,25 +156,25 @@ let quakeRepository=(function(){
     let quakeDetails=document.createElement('ul');
     quakeDetails.classList.add('quake-list');
 
-    let detailURL=document.createElement('li');
-    detailURL.innerText='Event URL: '+quake.nonJsonUrl;
-    quakeDetails.appendChild(detailURL);
+    let quakeDetailURL=document.createElement('li');
+    quakeDetailURL.innerText='Event URL: '+quake.nonJsonUrl;
+    quakeDetails.appendChild(quakeDetailURL);
 
-    let detailMagnitude=document.createElement('li');
-    detailMagnitude.innerText='Magnitude: '+quake.magnitude;
-    quakeDetails.appendChild(detailMagnitude);
+    let quakeDetailMagnitude=document.createElement('li');
+    quakeDetailMagnitude.innerText='Magnitude: '+quake.magnitude;
+    quakeDetails.appendChild(quakeDetailMagnitude);
 
-    let detailLatitude=document.createElement('li');
-    detailLatitude.innerText='Latitude: '+quake.latitude;
-    quakeDetails.appendChild(detailLatitude);
+    let quakeDetailLatitude=document.createElement('li');
+    quakeDetailLatitude.innerText='Latitude: '+quake.latitude;
+    quakeDetails.appendChild(quakeDetailLatitude);
 
-    let detailLongitude=document.createElement('li');
-    detailLongitude.innerText='Longitude: '+quake.longitude;
-    quakeDetails.appendChild(detailLongitude);
+    let quakeDetailLongitude=document.createElement('li');
+    quakeDetailLongitude.innerText='Longitude: '+quake.longitude;
+    quakeDetails.appendChild(quakeDetailLongitude);
 
-    let detailDepth=document.createElement('li');
-    detailDepth.innerText='Depth (km): '+quake.depth;
-    quakeDetails.appendChild(detailDepth);
+    let quakeDetailDepth=document.createElement('li');
+    quakeDetailDepth.innerText='Depth (km): '+quake.depth;
+    quakeDetails.appendChild(quakeDetailDepth);
  
 
     modal.appendChild(quakeDetails);
