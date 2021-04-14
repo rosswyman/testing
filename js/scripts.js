@@ -50,7 +50,7 @@ let quakeRepository=(function(){
             json.features.forEach(function(item){
               let quake ={
               name: item.properties.title,
-              url: item.properties.detail,
+              detailURL: item.properties.detail,
               // defines fields that will be populated from the quake url
               magnitude: null,
               latitude: null,
@@ -68,12 +68,13 @@ let quakeRepository=(function(){
     
     function loadDetails(quake){
         showLoadingMessage();
-        let url=quake.url;
+        let url=quake.detailURL;
         return fetch(url).then(function(response){
         return response.json();
         }).then(function (item) {
+            // quake.imgURL=item.properties.products.dyfi["contents.nm60331242_ciim.jpg"]url;
+            quake.nonJsonUrl=item.properties.url;
             quake.magnitude=item.properties.mag;
-            // Creates an array with the lat, lon, and depth of the quake so those values can be passed on to the object
             quake.latitude=item.geometry.coordinates[0];
             quake.longitude=item.geometry.coordinates[1];
             quake.depth=item.geometry.coordinates[2]
