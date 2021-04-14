@@ -56,6 +56,7 @@ let quakeRepository=(function(){
                     name: item.properties.title,
                     detailURL: item.properties.detail,
                     // The following fields that will be populated from detailURL
+                    imgURL: null,
                     nonJsonUrl: null,
                     magnitude: null,
                     latitude: null,
@@ -79,6 +80,7 @@ let quakeRepository=(function(){
             return response.json();
         }).then(function (item) {
             // quake.imgURL=item.properties.products.dyfi["contents.nm60331242_ciim.jpg"]url;
+            quake.imgURL='https://via.placeholder.com/150';
             quake.nonJsonUrl=item.properties.url;
             quake.magnitude=item.properties.mag;
             quake.latitude=item.geometry.coordinates[0];
@@ -183,7 +185,11 @@ let quakeRepository=(function(){
     let quakeDetailDepth=document.createElement('li');
     quakeDetailDepth.innerText='Depth (km): '+quake.depth;
     quakeDetails.appendChild(quakeDetailDepth);
+
+    let quakeImage=document.createElement('img');
+    quakeImage.src=quake.imgURL;
  
+    modal.appendChild(quakeImage);
     modal.appendChild(quakeDetails);
     modal.appendChild(confirmButton);
     modal.appendChild(cancelButton);
