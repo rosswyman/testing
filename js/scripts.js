@@ -44,25 +44,28 @@ let quakeRepository=(function(){
         });
     }
 
+    // Fetches a list of earthqukes meeting the user criteria from USGS
     function loadList() {
         showLoadingMessage();
         return fetch(apiUrl).then(function (response) {
           return response.json();
         }).then(function (json){
             json.features.forEach(function(item){
-              let quake ={
-              name: item.properties.title,
-              detailURL: item.properties.detail,
-              // defines fields that will be populated from the quake url
-              nonJsonUrl: null,
-              magnitude: null,
-              latitude: null,
-              longitude: null,
-              depth: null              
-            };
-            add(quake);
-            hideLoadingMessage();
-          });
+                // Define what information will be gather for each earthquake
+                let quake ={
+                    name: item.properties.title,
+                    detailURL: item.properties.detail,
+                    // The following fields that will be populated from detailURL
+                    nonJsonUrl: null,
+                    magnitude: null,
+                    latitude: null,
+                    longitude: null,
+                    depth: null              
+                };
+                
+                add(quake);
+                hideLoadingMessage();
+            });
         }).catch(function(e){
             hideLoadingMessage();
             console.error(e);
@@ -73,7 +76,7 @@ let quakeRepository=(function(){
         showLoadingMessage();
         let url=quake.detailURL;
         return fetch(url).then(function(response){
-        return response.json();
+            return response.json();
         }).then(function (item) {
             // quake.imgURL=item.properties.products.dyfi["contents.nm60331242_ciim.jpg"]url;
             quake.nonJsonUrl=item.properties.url;
@@ -105,14 +108,17 @@ let quakeRepository=(function(){
         let modal = document.createElement('div');
         modal.classList.add('modal');
     
+        // Add close button and listener to modal
         let closeButtonElement = document.createElement('button');
         closeButtonElement.classList.add('modal-close');
         closeButtonElement.innerText = 'Close';
         closeButtonElement.addEventListener('click', hideModal);
 
+        // Modal Title
         let titleElement = document.createElement('h1');
         titleElement.innerText = title;
 
+        // Modal Text
         let contentElement = document.createElement('p');
         contentElement.innerText = text;    
         
@@ -153,9 +159,11 @@ let quakeRepository=(function(){
     cancelButton.classList.add('modal-cancel');
     cancelButton.innerText = 'Cancel';
 
+    // Create an unordered list with details
     let quakeDetails=document.createElement('ul');
     quakeDetails.classList.add('quake-list');
 
+    // Create list items of quake details and all to parent list
     let quakeDetailURL=document.createElement('li');
     quakeDetailURL.innerText='Event URL: '+quake.nonJsonUrl;
     quakeDetails.appendChild(quakeDetailURL);
@@ -176,7 +184,6 @@ let quakeRepository=(function(){
     quakeDetailDepth.innerText='Depth (km): '+quake.depth;
     quakeDetails.appendChild(quakeDetailDepth);
  
-
     modal.appendChild(quakeDetails);
     modal.appendChild(confirmButton);
     modal.appendChild(cancelButton);
@@ -194,21 +201,23 @@ let quakeRepository=(function(){
     });
   }
 
-  window.addEventListener('keydown', (e) =>{
-    let modalContainer = document.querySelector('#modal-container');
-    if(e.key==='Escape' && modalContainer.classList.contains('is-visible')){
-      hideModal();
-    }
+  // Listens for escape key to exit modal/dialogue
+    window.addEventListener('keydown', (e) =>{
+        let modalContainer = document.querySelector('#modal-container');
+        if(e.key==='Escape' && modalContainer.classList.contains('is-visible')){
+            hideModal();
+        }
     });
 
-  modalContainer.addEventListener('click', (e) => {
-    // Since this is also triggered when clicking INSIDE the modal
-    // We only want to close if the user clicks directly on the overlay
-    let target = e.target;
-    if(target=== modalContainer){
-      hideModal();
-    }
-  })
+    // Listens for click outside modal/dialog to exit
+    modalContainer.addEventListener('click', (e) => {
+        // Since this is also triggered when clicking INSIDE the modal
+        // We only want to close if the user clicks directly on the overlay
+        let target = e.target;
+        if(target=== modalContainer){
+            hideModal();
+        }
+    })
 
     return{
         add: add,
