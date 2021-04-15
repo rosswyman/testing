@@ -9,34 +9,41 @@
 /* Header Styling */
 
 header {
+  display: flex;
   background-color: var(--background-color);
   font-family: 'Nunito', sans-serif;
-  font-weight: var(--font-weight-text);
-  font-size: 16px;
+  /* font-size: 16px; */
   line-height: 1.6;
+  text-align: center;
 }
 
 .page-header {
+  clear: both;
   display: flex;
-  width: 100%;
-  padding: 20px;
-  border-bottom: 2px groove var(--background-color-darker);
-  margin-bottom: 10px;
+  /* font-weight: bold; */
 }
 
 /* Body Styling */
 body{
-  background-color: #c2cfcf;
+  /* background-color: #639C97; */
+  background-color: #B1A688;
+  padding: 25px;
 }
-  
-
 
 h1{
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
+  font-size: 40px;
+  line-height: 1.4;
+  text-align: center; 
+}
+
+h2{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
   font-size: 24px;
   line-height: 1.4;
-  text-align: center;
+  text-align: center; 
 }
 
 .quake-list{
@@ -49,7 +56,7 @@ h1{
 /* Button Styling */
 button,
 .button{
-  background-color: #7a9192;
+  background-color: #8893B1;
   border: 3px solid black;
   padding: 10px;
   border-radius: 10px;
