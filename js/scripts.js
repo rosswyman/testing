@@ -82,10 +82,10 @@ let quakeRepository=(function(){
             // quake.imgURL=item.properties.products.dyfi["contents.nm60331242_ciim.jpg"]url;
             quake.imgURL='https://via.placeholder.com/150';
             quake.nonJsonUrl=item.properties.url;
-            quake.magnitude=item.properties.mag;
-            quake.latitude=item.geometry.coordinates[0];
-            quake.longitude=item.geometry.coordinates[1];
-            quake.depth=item.geometry.coordinates[2]
+            quake.magnitude=item.properties.mag.toFixed(1);
+            quake.latitude=item.geometry.coordinates[0].toFixed(4);
+            quake.longitude=item.geometry.coordinates[1].toFixed(4);
+            quake.depth=item.geometry.coordinates[2].toFixed(3);
             hideLoadingMessage();
         }).catch(function(e){
             hideLoadingMessage();
