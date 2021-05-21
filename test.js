@@ -67,7 +67,7 @@ app.post('/students', (req, res) => {
 // Deletes a student from our list by ID
 
 app.delete('/students/:id', (req, res) => {
-	let student = students.find((student) => {
+	let students = students.find((student) => {
 		return student.id === req.params.id;
 	});
 
