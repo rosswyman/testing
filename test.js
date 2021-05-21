@@ -49,6 +49,16 @@ app.get('/students/:name', (req, res) => {
 	);
 });
 
+// Gets the data about a single student, by ID
+
+// app.get('/students/:id', (req, res) => {
+// 	res.json(
+// 		students.find((student) => {
+// 			return student.id === req.params.id;
+// 		})
+// 	);
+// });
+
 // Adds data for a new student to our list of students
 
 app.post('/students', (req, res) => {
@@ -67,15 +77,16 @@ app.post('/students', (req, res) => {
 // Deletes a student from our list by ID
 
 app.delete('/students/:id', (req, res) => {
-	let students = students.find((student) => {
+	let student = students.find((student) => {
 		return student.id === req.params.id;
 	});
 
-	if (students) {
+	if (student) {
 		students = students.filter((obj) => {
 			return obj.id !== req.params.id;
 		});
-		res.status(201).send('Student ' + req.params, id + ' was deleted.');
+		res.status(201).send('Student ' + req.params.id + ' was deleted.');
+		res.send('Got a DELETE request at /user');
 	}
 });
 
